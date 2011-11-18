@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#ttplugin_dlg.title}</title>
+	<script type="text/javascript" src="tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+</head>
+<body>
+
+<form onsubmit="TimThumbDialog.insert();return false;" action="#">
+	<p>TimThumb Width (px): <input id="width" name="width" type="text" class="text" /></p>
+	<p>TimThumb Height (px): <input id="height" name="height" type="text" class="text" /></p>
+	<p>Zoom Crop (0 or 1): <input id="zc" name="zc" type="text" class="text" /></p>
+	<p>Classes: <input id="classes" name="classes" type="text" class="text" size="50" /></p>
+	
+	<div class="mceActionPanel">
+		<div style="float: left">
+			<input type="button" id="insert" name="insert" value="{#insert}" onclick="TimThumbDialog.insert();" />
+		</div>
+
+		<div style="float: right">
+			<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+		</div>
+	</div>
+</form>
+
+</body>
+</html>
