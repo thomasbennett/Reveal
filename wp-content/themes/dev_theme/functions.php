@@ -371,7 +371,6 @@ function mytheme_save_data($post_id) {
 	}
 }
  
-
 // call in thickbox and other dependencies
 function my_admin_scripts() {
 wp_enqueue_script('media-upload');
@@ -384,15 +383,5 @@ wp_enqueue_style('thickbox');
 }
 add_action('admin_print_scripts', 'my_admin_scripts');
 add_action('admin_print_styles', 'my_admin_styles');
-
-
-/* Add Comment Counter to the dashboard */
-function comment_counter() {
-	echo '<iframe width="100%" height="250" src="'.site_url().'/comment-count"></iframe>';
-}
-function add_comment_counter() {
-	wp_add_dashboard_widget('comment_counter', 'Comment Counts', 'comment_counter');
-}
-add_action('wp_dashboard_setup', 'add_comment_counter');
 
 ?>
