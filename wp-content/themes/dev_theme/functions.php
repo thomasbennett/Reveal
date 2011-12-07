@@ -142,31 +142,13 @@ remove_action('wp_head', 'wp_generator');
 remove_filter('the_content', 'wptexturize');
 remove_filter('comment_text', 'wptexturize');
 
-// add tags to meta keywords 
-function tags_to_keywords(){
-  global $post;
-  if(is_single() || is_page()){ 
-    $tags = wp_get_post_tags($post->ID); 
-    foreach($tags as $tag){ 
-      $tag_array[] = $tag->name; 
-    }
-    $tag_string = implode(', ',$tag_array); 
-    if($tag_string !== ''){
-        echo "<meta name='keywords' content='".$tag_string."' />\r\n";
-    }
-  }
-}
-
-// Add tags_to_keywords to wp_head function
-add_action('wp_head','tags_to_keywords'); 
-
 // show admin bar only for admins
 if (!current_user_can('manage_options')) {
   add_filter('show_admin_bar', '__return_false');
 }
 
 /*/////////////////////////////////////////////////////////////////////*/
-/* ///////////////       CUSTOM SLIDESHOW      ////////////////////////*/
+/*////////////////////       CUSTOM SLIDESHOW      ////////////////////*/
 /*/////////////////////////////////////////////////////////////////////*/
 
 //  create the custom post type

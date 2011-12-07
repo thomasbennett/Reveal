@@ -186,6 +186,14 @@ footer {
   padding-top: 20px;
 }
 
+/*===================================================*/
+
+/* Gallery */
+.ngg-thumbnail { display: none; }
+.ngg-albumcontent { display: none; }
+#TB_closeWindow { display: none; }
+/*===================================================*/
+
 
 
 
