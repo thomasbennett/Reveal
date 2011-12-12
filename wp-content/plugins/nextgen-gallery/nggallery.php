@@ -345,6 +345,8 @@ class nggLoader {
 		//	activate Thickbox
 		if ($this->options['thumbEffect'] == 'thickbox') {
 			wp_enqueue_script( 'thickbox' );
+
+
 			// Load the thickbox images after all other scripts
 			add_action( 'wp_footer', array(&$this, 'load_thickbox_images'), 11 );
 

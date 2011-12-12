@@ -2,7 +2,7 @@
 ob_start();
 include('loop.php');
 
-if(is_page('sample-page')): 
+if(is_page('2')): 
 ?>
 
 <div id="gallery-image-container">

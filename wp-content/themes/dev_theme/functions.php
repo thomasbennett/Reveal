@@ -47,7 +47,8 @@ function widgets_array()
 				'before_widget' => '',
 				'after_widget'  => '',
       ),
-    ),
+    )
+    /*,
     'Custom' => array(
       'admin_menu_order'  => 200,
       'args' => array(
@@ -59,7 +60,7 @@ function widgets_array()
         'before_widget' => '',
         'after_widget'  => '',
       )
-    )
+    )*/
   );
 
 	return apply_filters('widgetized_areas', $widgetized_areas);
@@ -365,5 +366,68 @@ wp_enqueue_style('thickbox');
 }
 add_action('admin_print_scripts', 'my_admin_scripts');
 add_action('admin_print_styles', 'my_admin_styles');
+
+// CUSTOM POST TYPE --> CALLOUTS
+function post_type_callouts()
+{
+  $labels = array(
+    'name' => __('Callouts'),
+    'singular_name' => __('Callouts'),
+    'add_new' => __('Add New Callout'),
+    'add_new_item' => __('Add New Callout'),
+    'new_item' => __('Add New Callout'),
+    'edit_item' => __('Edit Callout'),
+    'view_item' => __('View Callout'),
+    'search_items' => __('Search Callouts')
+  );
+
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => true,
+    'capability_type' => 'post',
+    'hierarchical' => true,
+    'menu_position' => null,
+    'supports' => array('title', 'editor', 'thumbnail')
+  );
+
+  register_post_type('callouts',$args);
+}
+add_action('init', 'post_type_callouts');
+
+// CUSTOM POST TYPE --> TESTIMONIALS
+function post_type_praise()
+{
+  $labels = array(
+    'name' => __('Praise'),
+    'singular_name' => __('Praise'),
+    'add_new' => __('Add New Praise'),
+    'add_new_item' => __('Add New Praise'),
+    'new_item' => __('Add New Praise'),
+    'edit_item' => __('Edit Praise'),
+    'view_item' => __('View Praise'),
+    'search_items' => __('Search Praises')
+  );
+
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => true,
+    'capability_type' => 'post',
+    'hierarchical' => true,
+    'menu_position' => null,
+    'supports' => array('title', 'editor', 'thumbnail'),
+    'taxonomies' => array('category')
+  );
+
+  register_post_type('praise', $args);
+}
+add_action('init', 'post_type_praise');
 
 ?>

@@ -135,30 +135,29 @@ button {  width: auto; overflow: visible; }
 /* Bicubic resizing for non-native sized IMG:
    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
 .ie7 img { -ms-interpolation-mode: bicubic; }
+/*===================================================*/
 
 /**
- * You might tweak these..
+ * BEGIN STYLES 
  */
 
+/* Global */
+body { background: #ccc; }
 body, select, input, textarea {
-  /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
   color: #444;
-  /* Set your base font here, to apply evenly */
-  /* font-family: Georgia, serif;  */
 }
 
-/* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
+/* Headers  */
 h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 
 a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
 
-
 /**
  * Primary styles
  *
  * Author:  Thomas Bennett
- */
+**/
 
 /* Tools */
 .alignleft { float: left; margin-right: 15px; }
@@ -167,10 +166,9 @@ a:hover { color: #036; }
 .right { float: right; }
 .inline li { display: inline-block; float: left; }
 .center { margin: 0 auto; width: 960px; }
+/*===================================================*/
 
-/* Global */
-body { background: #ccc; }
-
+/* Template */
 #container {
   background: #f8f8f8;
   border-left: 1px solid #999;
@@ -185,7 +183,6 @@ footer {
   border-top: 1px solid #999;
   padding-top: 20px;
 }
-
 /*===================================================*/
 
 /* Gallery */

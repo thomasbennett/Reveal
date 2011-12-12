@@ -36,8 +36,31 @@ function tb_click(){
 }
 
 function tb_show(caption, url, imageGroup) {//function called when the user clicks on a thickbox link
+
 	try {
+		if (typeof document.body.style.maxHeight === "undefined") {//if IE 6
+			jQuery("body","html").css({height: "100%", width: "100%"});
+			jQuery("html").css("overflow","hidden");
+			if (document.getElementById("TB_HideSelect") === null) {//iframe to hide select elements in ie6
+				jQuery("body").append("<iframe id='TB_HideSelect'>"+thickboxL10n.noiframes+"</iframe><div id='TB_overlay'></div><div id='TB_window'></div>");
+				jQuery("#TB_overlay").click(tb_remove);
+			}
+		}else{//all others
+			if(document.getElementById("TB_overlay") === null){
+				jQuery("body").append("<div id='TB_overlay'></div><div id='TB_window'></div>");
+				jQuery("#TB_overlay").click(tb_remove);
+			}
+		}
+
+		if(tb_detectMacXFF()){
+			jQuery("#TB_overlay").addClass("TB_overlayMacFFBGHack");//use png overlay so hide flash
+		}else{
+			jQuery("#TB_overlay").addClass("TB_overlayBG");//use background and opacity
+		}
+
 		if(caption===null){caption="";}
+		jQuery("body").append("<div id='TB_load'><img src='"+imgLoader.src+"' /></div>");//add loader to the page
+		jQuery('#TB_load').show();//show loader
 
 		var baseURL;
 	   if(url.indexOf("?")!==-1){ //ff there is a query string involved
@@ -84,57 +107,82 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 			imgPreloader.onload = function(){
 			imgPreloader.onload = null;
 
-        // Resizing large images - orginal by Christian Montoya edited by me.
-        var pagesize = tb_getPageSize();
-        var x = pagesize[0] - 150;
-        var y = pagesize[1] - 150;
-        var imageWidth = imgPreloader.width;
-        var imageHeight = imgPreloader.height;
-        if (imageWidth > x) {
-          imageHeight = imageHeight * (x / imageWidth);
-          imageWidth = x;
-          if (imageHeight > y) {
-            imageWidth = imageWidth * (y / imageHeight);
-            imageHeight = y;
-          }
-        } else if (imageHeight > y) {
-          imageWidth = imageWidth * (y / imageHeight);
-          imageHeight = y;
-          if (imageWidth > x) {
-            imageHeight = imageHeight * (x / imageWidth);
-            imageWidth = x;
-          }
-        }
-        // End Resizing
+			// Resizing large images - orginal by Christian Montoya edited by me.
+			var pagesize = tb_getPageSize();
+			var x = pagesize[0] - 150;
+			var y = pagesize[1] - 150;
+			var imageWidth = imgPreloader.width;
+			var imageHeight = imgPreloader.height;
+			if (imageWidth > x) {
+				imageHeight = imageHeight * (x / imageWidth);
+				imageWidth = x;
+				if (imageHeight > y) {
+					imageWidth = imageWidth * (y / imageHeight);
+					imageHeight = y;
+				}
+			} else if (imageHeight > y) {
+				imageWidth = imageWidth * (y / imageHeight);
+				imageHeight = y;
+				if (imageWidth > x) {
+					imageHeight = imageHeight * (x / imageWidth);
+					imageWidth = x;
+				}
+			}
+			// End Resizing
 
-        TB_WIDTH = imageWidth + 30;
-        TB_HEIGHT = imageHeight + 60;
-        jQuery("#gallery-image").append("<a href='' id='TB_ImageOff' title='"+thickboxL10n.close+"'><img id='TB_Image' src='"+url+"' width='"+imageWidth+"' height='"+imageHeight+"' alt='"+caption+"'/></a>" + "<div id='TB_caption'>"+caption+"<div id='TB_secondLine'>" + TB_imageCount + TB_PrevHTML + TB_NextHTML + "</div></div><div id='TB_closeWindow'><a href='#' id='TB_closeWindowButton' title='"+thickboxL10n.close+"'><img src='" + tb_closeImage + "' /></a></div>");
+			TB_WIDTH = imageWidth + 30;
+			TB_HEIGHT = imageHeight + 60;
+			jQuery("#TB_window").append("<a href='' id='TB_ImageOff' title='"+thickboxL10n.close+"'><img id='TB_Image' src='"+url+"' width='"+imageWidth+"' height='"+imageHeight+"' alt='"+caption+"'/></a>" + "<div id='TB_caption'>"+caption+"<div id='TB_secondLine'>" + TB_imageCount + TB_PrevHTML + TB_NextHTML + "</div></div><div id='TB_closeWindow'><a href='#' id='TB_closeWindowButton' title='"+thickboxL10n.close+"'><img src='" + tb_closeImage + "' /></a></div>");
 
-        if (!(TB_PrevHTML === "")) {
-          function goPrev(){
-            jQuery('#gallery-image').remove();
-            if(jQuery(document).unbind("click",goPrev)){jQuery(document).unbind("click",goPrev);}
-            //jQuery("#TB_window").remove();
-            jQuery("#gallery-image-container").append("<div id='gallery-image'></div>");
-            tb_show(TB_PrevCaption, TB_PrevURL, imageGroup);
-            return false;
-          }
-          jQuery("#TB_prev").click(goPrev);
-        }
+			jQuery("#TB_closeWindowButton").click(tb_remove);
 
-        if (!(TB_NextHTML === "")) {
-          function goNext(){
-            jQuery('#gallery-image').remove();
-            jQuery("#TB_window").remove();
-            jQuery("#gallery-image-container").append("<div id='gallery-image'></div>");
-            tb_show(TB_NextCaption, TB_NextURL, imageGroup);
-            return false;
-          }
-          jQuery("#TB_next").click(goNext);
+			if (!(TB_PrevHTML === "")) {
+				function goPrev(){
+					if(jQuery(document).unbind("click",goPrev)){jQuery(document).unbind("click",goPrev);}
+					jQuery("#TB_window").remove();
+					jQuery("body").append("<div id='TB_window'></div>");
+					tb_show(TB_PrevCaption, TB_PrevURL, imageGroup);
+					return false;
+				}
+				jQuery("#TB_prev").click(goPrev);
+			}
 
-        }
+			if (!(TB_NextHTML === "")) {
+				function goNext(){
+					jQuery("#TB_window").remove();
+					jQuery("body").append("<div id='TB_window'></div>");
+					tb_show(TB_NextCaption, TB_NextURL, imageGroup);
+					return false;
+				}
+				jQuery("#TB_next").click(goNext);
 
+			}
+
+			jQuery(document).bind('keydown.thickbox', function(e){
+				e.stopImmediatePropagation();
+
+				if ( e.which == 27 ){ // close
+					if ( ! jQuery(document).triggerHandler( 'wp_CloseOnEscape', [{ event: e, what: 'thickbox', cb: tb_remove }] ) )
+						tb_remove();
+
+				} else if ( e.which == 190 ){ // display previous image
+					if(!(TB_NextHTML == "")){
+						jQuery(document).unbind('thickbox');
+						goNext();
+					}
+				} else if ( e.which == 188 ){ // display next image
+					if(!(TB_PrevHTML == "")){
+						jQuery(document).unbind('thickbox');
+						goPrev();
+					}
+				}
+				return false;
+			});
+
+			tb_position();
+			jQuery("#TB_load").remove();
+			jQuery("#TB_ImageOff").click(tb_remove);
+			jQuery("#TB_window").css({display:"block"}); //for safari using css instead of show
 			};
 
 			imgPreloader.src = url;
@@ -152,7 +200,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 					urlNoQuery = url.split('TB_');
 					jQuery("#TB_iframeContent").remove();
 					if(params['modal'] != "true"){//iframe no modal
-						jQuery("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div></div><iframe frameborder='0' hspace='0' src='"+urlNoQuery[0]+"' id='TB_iframeContent' name='TB_iframeContent"+Math.round(Math.random()*1000)+"' onload='tb_showIframe()' style='width:"+(ajaxContentW + 29)+"px;height:"+(ajaxContentH + 17)+"px;' >"+thickboxL10n.noiframes+"</iframe>");
+						jQuery("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div><div id='TB_closeAjaxWindow'><a href='#' id='TB_closeWindowButton' title='"+thickboxL10n.close+"'><img src='" + tb_closeImage + "' /></a></div></div><iframe frameborder='0' hspace='0' src='"+urlNoQuery[0]+"' id='TB_iframeContent' name='TB_iframeContent"+Math.round(Math.random()*1000)+"' onload='tb_showIframe()' style='width:"+(ajaxContentW + 29)+"px;height:"+(ajaxContentH + 17)+"px;' >"+thickboxL10n.noiframes+"</iframe>");
 					}else{//iframe modal
 					jQuery("#TB_overlay").unbind();
 						jQuery("#TB_window").append("<iframe frameborder='0' hspace='0' src='"+urlNoQuery[0]+"' id='TB_iframeContent' name='TB_iframeContent"+Math.round(Math.random()*1000)+"' onload='tb_showIframe()' style='width:"+(ajaxContentW + 29)+"px;height:"+(ajaxContentH + 17)+"px;'>"+thickboxL10n.noiframes+"</iframe>");
@@ -172,21 +220,77 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 						jQuery("#TB_ajaxWindowTitle").html(caption);
 					}
 			}
+
+			jQuery("#TB_closeWindowButton").click(tb_remove);
+
+				if(url.indexOf('TB_inline') != -1){
+					jQuery("#TB_ajaxContent").append(jQuery('#' + params['inlineId']).children());
+					jQuery("#TB_window").unload(function () {
+						jQuery('#' + params['inlineId']).append( jQuery("#TB_ajaxContent").children() ); // move elements back when you're finished
+					});
+					tb_position();
+					jQuery("#TB_load").remove();
+					jQuery("#TB_window").css({display:"block"});
+				}else if(url.indexOf('TB_iframe') != -1){
+					tb_position();
+					if(jQuery.browser.safari){//safari needs help because it will not fire iframe onload
+						jQuery("#TB_load").remove();
+						jQuery("#TB_window").css({display:"block"});
+					}
+				}else{
+					jQuery("#TB_ajaxContent").load(url += "&random=" + (new Date().getTime()),function(){//to do a post change this load method
+						tb_position();
+						jQuery("#TB_load").remove();
+						tb_init("#TB_ajaxContent a.thickbox");
+						jQuery("#TB_window").css({display:"block"});
+					});
+				}
+
 		}
+
+		if(!params['modal']){
+			jQuery(document).bind('keyup.thickbox', function(e){
+
+				if ( e.which == 27 ){ // close
+					e.stopImmediatePropagation();
+					if ( ! jQuery(document).triggerHandler( 'wp_CloseOnEscape', [{ event: e, what: 'thickbox', cb: tb_remove }] ) )
+						tb_remove();
+
+					return false;
+				}
+			});
+		}
+
 	} catch(e) {
 		//nothing here
 	}
 }
 
 //helper functions below
+function tb_showIframe(){
+	jQuery("#TB_load").remove();
+	jQuery("#TB_window").css({display:"block"});
+}
 
 function tb_remove() {
  	jQuery("#TB_imageOff").unbind("click");
-	jQuery("#TB_window").fadeOut("fast",function(){
-    jQuery('#TB_window,#TB_overlay,#TB_HideSelect').trigger("unload").unbind().remove();
-  });
+	jQuery("#TB_closeWindowButton").unbind("click");
+	jQuery("#TB_window").fadeOut("fast",function(){jQuery('#TB_window,#TB_overlay,#TB_HideSelect').trigger("unload").unbind().remove();});
+	jQuery("#TB_load").remove();
+	if (typeof document.body.style.maxHeight == "undefined") {//if IE 6
+		jQuery("body","html").css({height: "auto", width: "auto"});
+		jQuery("html").css("overflow","");
+	}
 	jQuery(document).unbind('.thickbox');
 	return false;
+}
+
+function tb_position() {
+var isIE6 = typeof document.body.style.maxHeight === "undefined";
+jQuery("#TB_window").css({marginLeft: '-' + parseInt((TB_WIDTH / 2),10) + 'px', width: TB_WIDTH + 'px'});
+	if ( ! isIE6 ) { // take away IE6
+		jQuery("#TB_window").css({marginTop: '-' + parseInt((TB_HEIGHT / 2),10) + 'px'});
+	}
 }
 
 function tb_parseQuery ( query ) {

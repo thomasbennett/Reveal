@@ -11,7 +11,7 @@
   <title><?php bloginfo('name') . ' ' . wp_title(); ?></title>
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="author" content="Thomas Bennett for iostudio" />
+  <meta name="author" content="Thomas Bennett for TB" />
 
   <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory') ?>/style.css" />
 
@@ -25,27 +25,31 @@
 <body>
   <div id="container">
     <header>
-      <a href="/"><h1 id="logo"><?php bloginfo('name'); ?></h1></a>
       <nav>
-          
+        <ul class="inline">
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/about">About</a></li>
+          <li class="logo-nav"><a href="/"><h1 id="logo"><?php bloginfo('name'); ?></h1></a></li>
+          <li><a href="/press">Press</a></li>
+          <li><a href="/praise">Praise</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
       </nav>
     </header>
 
     <div id="content">
       <?php echo $content ?>
     </div>
-
-    <aside>
-      <?php get_sidebar(); ?>
-    </aside>
-    <div class="clear"></div>
   </div>
 
   <footer>
+    <p>&copy; Copyright <?php echo date('Y'); ?> Reveal Event Design</p>
     <?php get_footer() ?>
   </footer>
 
   <script src="<?php bloginfo('template_directory') ?>/js/plugins.js"></script>
+  <script src="<?php bloginfo('template_directory') ?>/js/thickbox.js"></script>
   <script src="<?php bloginfo('template_directory') ?>/js/script.js"></script>
 
   <!--[if lt IE 7 ]>
