@@ -4,7 +4,7 @@ Plugin Name: NextGEN Gallery
 Plugin URI: http://alexrabe.de/?page_id=80
 Description: A NextGENeration Photo Gallery for WordPress
 Author: Alex Rabe
-Version: 1.9.0
+Version: 1.9.1
 
 Author URI: http://alexrabe.de/
 
@@ -34,7 +34,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You 
 if (!class_exists('nggLoader')) {
 class nggLoader {
 	
-	var $version     = '1.9.0';
+	var $version     = '1.9.1';
 	var $dbversion   = '1.8.0';
 	var $minium_WP   = '3.1';
 	var $donators    = 'http://nextgen.boelinger.com/donators.php';
@@ -119,10 +119,6 @@ class nggLoader {
 			if ( $this->options['useMediaRSS'] )
 				add_action('wp_head', array('nggMediaRss', 'add_mrss_alternate_link'));
 			
-			// If activated, add PicLens/Cooliris javascript to footer
-			if ( $this->options['usePicLens'] )
-				add_action('wp_head', array('nggMediaRss', 'add_piclens_javascript'));
-                
             // Look for XML request, before page is render
             add_action('parse_request',  array(&$this, 'check_request') );    
 				
@@ -345,8 +341,6 @@ class nggLoader {
 		//	activate Thickbox
 		if ($this->options['thumbEffect'] == 'thickbox') {
 			wp_enqueue_script( 'thickbox' );
-
-
 			// Load the thickbox images after all other scripts
 			add_action( 'wp_footer', array(&$this, 'load_thickbox_images'), 11 );
 
@@ -377,11 +371,15 @@ class nggLoader {
 			if ( ($this->options['thumbEffect'] == "shutter") || function_exists('srel_makeshutter') ) {
 				wp_enqueue_script ( 'ngg_script', NGGALLERY_URLPATH . 'js/ngg.js', array('jquery'), '2.1');
 				wp_localize_script( 'ngg_script', 'ngg_ajax', array('path'		=> NGGALLERY_URLPATH,
-                                                                    'callback'  => home_url() . '/' . 'index.php?callback=ngg-ajax',
+                                                                    'callback'  => trailingslashit( home_url() ) . 'index.php?callback=ngg-ajax',
 																	'loading'	=> __('loading', 'nggallery'),
 				) );
 			}
 		}
+        
+        // If activated, add PicLens/Cooliris javascript to footer
+		if ( $this->options['usePicLens'] )
+            nggMediaRss::add_piclens_javascript();
 		
 	}
 	
