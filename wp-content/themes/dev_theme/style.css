@@ -147,11 +147,15 @@ body, select, input, textarea {
   color: #444;
 }
 
+label, input, textarea { clear: both; float: left; }
+
 /* Headers  */
 h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 
 a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
+
+p { clear: both; margin-bottom: 20px; }
 
 /**
  * Primary styles

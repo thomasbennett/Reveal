@@ -27,7 +27,7 @@ if(have_posts()): while(have_posts()): the_post(); ?>
   <input type="radio" name="social_gathering"><label for="social_gathering">Social Gathering</label>
   <input type="radio" name="wedding"><label for="wedding">Wedding</label>
 
-  <div id="corporate">
+  <div id="corporate" class="hidden">
     <label>Specifically, what type of event?</label>
     <input type="radio" name="business_meeting"><label for="business_meeting">Business Meeting</label>
     <input type="radio" name="convention"><label for="convention">Convention</label>
@@ -42,7 +42,7 @@ if(have_posts()): while(have_posts()): the_post(); ?>
     <input type="radio" name="corporate_no"><label for="corporate_no">No</label>
   </div>
 
-  <div id="social">
+  <div id="social" class="hidden">
     <label for="occasion">What occasion are we celebrating?</label>
     <input name="occasion" type="text" alt="" />
 
@@ -64,7 +64,7 @@ if(have_posts()): while(have_posts()): the_post(); ?>
     <textarea name="comments"></textarea>
   </div>
 
-  <div id="wedding">
+  <div id="wedding" class="hidden">
     <label for="wedding_guests">How many guests are you expecting?</label>
     <input name="wedding_guests" type="text" alt="" />
 
