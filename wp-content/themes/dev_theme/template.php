@@ -27,13 +27,13 @@
     <header>
       <nav>
         <ul class="inline">
-          <li><a href="/gallery">Gallery</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/about">About</a></li>
+          <li><a class="gallery" href="/gallery">Gallery</a></li>
+          <li><a class="services" href="/services">Services</a></li>
+          <li><a class="about" href="/about">About</a></li>
           <li class="logo-nav"><a href="/"><h1 id="logo"><?php bloginfo('name'); ?></h1></a></li>
-          <li><a href="/press">Press</a></li>
-          <li><a href="/praise">Praise</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a class="press" href="/press">Press</a></li>
+          <li><a class="praise" href="/praise">Praise</a></li>
+          <li><a class="contact" href="/contact">Contact</a></li>
         </ul>
       </nav>
     </header>
@@ -41,7 +41,11 @@
     <div id="content">
       <?php echo $content ?>
     </div>
+
+    <div class="clear"></div>
   </div>
+
+  <div class="clear"></div>
 
   <footer>
     <p>&copy; Copyright <?php echo date('Y'); ?> Reveal Event Design</p>
@@ -49,7 +53,7 @@
   </footer>
 
   <script src="<?php bloginfo('template_directory') ?>/js/plugins.js"></script>
-  <script src="<?php bloginfo('template_directory') ?>/js/thickbox.js"></script>
+  <?php if(is_page('Gallery')): ?><script src="<?php bloginfo('template_directory') ?>/js/thickbox.js"></script><?php endif; ?>
   <script src="<?php bloginfo('template_directory') ?>/js/script.js"></script>
 
   <!--[if lt IE 7 ]>

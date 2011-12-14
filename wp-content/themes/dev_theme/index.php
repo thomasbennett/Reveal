@@ -19,9 +19,7 @@ if($loop->have_posts()):
     $slideshow_image = get_post_meta($post->ID, 'upload_image', TRUE); 
     ?>
     <div class="slide">
-      <a href="<?php echo $slideshow['slideshow_imageurl']; ?>"><img src="<?php $slideshow_image; ?>" alt="<?php echo the_title(); ?>" /></a>
-      <?php echo $slideshow['slideshow_headline']; ?>
-      <?php echo $slideshow['slideshow_copy']; ?>
+      <img src="<?php echo $slideshow_image; ?>" alt="<?php echo the_title(); ?>" height="500" width="890" />
     </div>
   <?php
   endwhile;
@@ -31,7 +29,7 @@ endif;
 
 <section id="callouts">
 <?php
-$args = array('post_type'=>'post_type_callouts');
+$args = array('post_type'=>'callouts');
 $callouts = new WP_Query($args);
 
 // start callout loop
@@ -40,6 +38,7 @@ if($callouts->have_posts()):
     $callouts->the_post(); 
     ?>
     <div class="bucket">
+      <?php the_post_thumbnail(); ?>
       <h2 class="h3"><?php the_title(); ?></h2>
       <span><?php the_content(); ?></span>
     </div>
@@ -52,7 +51,7 @@ endif;
 <script>
   jQuery(function($){
     $('#slideshow').cycle({
-      fx: 'scrollLeft',
+      fx: 'fade',
       timeout: 4500,
       speed: 500
     });
