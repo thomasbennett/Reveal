@@ -49,7 +49,7 @@
   </footer>
 
   <script src="<?php bloginfo('template_directory') ?>/js/plugins.js"></script>
-  <script src="<?php bloginfo('template_directory') ?>/js/thickbox.js"></script>
+  <?php if(is_page('Gallery')):?><script src="<?php bloginfo('template_directory') ?>/js/thickbox.js"></script><?php endif; ?>
   <script src="<?php bloginfo('template_directory') ?>/js/script.js"></script>
 
   <!--[if lt IE 7 ]>

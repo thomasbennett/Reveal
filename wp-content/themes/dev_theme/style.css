@@ -48,7 +48,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
 
-input, select { vertical-align: middle; }
+input, select { border: 1px solid #999; vertical-align: middle; }
 
 
 /**
@@ -147,7 +147,11 @@ body, select, input, textarea {
   color: #444;
 }
 
-label, input, textarea { clear: both; float: left; }
+label, input, textarea { float: left; }
+.formset { clear: both; display: block; }
+.formset label { width: 300px; }
+.radio-buttons label { width: auto } 
+textarea { margin-bottom: 10px; }
 
 /* Headers  */
 h1, h2, h3, h4, h5, h6 { font-weight: bold; }
@@ -170,6 +174,9 @@ p { clear: both; margin-bottom: 20px; }
 .right { float: right; }
 .inline li { display: inline-block; float: left; }
 .center { margin: 0 auto; width: 960px; }
+.clear { clear: both; }
+.clearnone { clear: none; }
+.full-width { width: 100%; }
 /*===================================================*/
 
 /* Template */
