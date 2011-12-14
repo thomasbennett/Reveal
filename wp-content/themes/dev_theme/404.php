@@ -10,9 +10,6 @@ ob_start();
 
 <?php
 
-get_search_form();
-include('loop.php');
-
 $content = ob_get_clean(); 
 require('template.php');
 

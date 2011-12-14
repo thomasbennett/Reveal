@@ -142,7 +142,7 @@ button {  width: auto; overflow: visible; }
  */
 
 /* Global */
-body { background: #ccc; }
+body { background: #ccc url('images/background.png') repeat; }
 body, select, input, textarea {
   color: #444;
 }
@@ -154,12 +154,14 @@ label, input, textarea { float: left; }
 textarea { margin-bottom: 10px; }
 
 /* Headers  */
-h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+h1, .h1, h2, .h2 { font-family: 'Zapfino'; }
+h3, .h3 { font-family: 'Trebuchet MS'; }
 
 a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
 
-p { clear: both; margin-bottom: 20px; }
+p { margin-bottom: 20px; }
 
 /**
  * Primary styles
@@ -172,27 +174,91 @@ p { clear: both; margin-bottom: 20px; }
 .alignright { float: right; margin-left: 15px; }
 .left { float: left; }
 .right { float: right; }
+.clear { clear: both; }
 .inline li { display: inline-block; float: left; }
 .center { margin: 0 auto; width: 960px; }
 .clear { clear: both; }
 .clearnone { clear: none; }
 .full-width { width: 100%; }
+.divider { border-bottom: 1px solid #ddd; clear: both; margin: 20px auto; padding-top: 20px; width: 80%; }
+
 /*===================================================*/
 
+/* Nav */
+#logo { 
+  background: url('images/logo.png') no-repeat;
+  height: 126px;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 268px;
+}
+
+nav a { 
+  background-position: top left;
+  height: 16px; 
+  margin-top: 55px;
+  overflow: hidden; 
+  text-indent: -9999px;
+}
+
+nav a:hover { 
+  background-position: bottom left;
+  height: 17px;
+}
+
+.gallery { 
+  background: url('images/gallery.png') no-repeat; 
+  display: inline-block;
+  width: 111px;
+}
+
+.services { 
+  background: url('images/services.png') no-repeat; 
+  display: inline-block;
+  width: 115px;
+}
+
+.about { 
+  background: url('images/about.png') no-repeat; 
+  display: inline-block;
+  width: 95px;
+}
+
+.press { 
+  background: url('images/press.png') no-repeat; 
+  display: inline-block;
+  width: 86px;
+}
+
+.praise { 
+  background: url('images/praise.png') no-repeat; 
+  display: inline-block;
+  width: 95px;
+}
+
+.contact { 
+  background: url('images/contact.png') no-repeat; 
+  display: inline-block;
+  width: 122px;
+}
+
 /* Template */
+header {
+  height: 126px;
+}
+
 #container {
-  background: #f8f8f8;
-  border-left: 1px solid #999;
-  border-right: 1px solid #999;
+  background: url('images/container-bg.png') repeat-y;
   margin: 0 auto;
-  padding: 20px;
-  min-height: 600px;
-  width: 920px;
+  padding: 20px 44px;
+  width: 892px;
 }
 
 footer {
-  border-top: 1px solid #999;
-  padding-top: 20px;
+  background: url('images/container-bottom.png') no-repeat center top;
+  margin: 0 auto;
+  padding: 50px 44px;
+  width: 892px;
 }
 /*===================================================*/
 
@@ -202,7 +268,24 @@ footer {
 #TB_closeWindow { display: none; }
 /*===================================================*/
 
+/* Home */
+.slide { 
+  height: 500px;
+  overflow: hidden;
+  width: 890px;
+}
 
+.bucket { position: relative; }
+.bucket p { margin-bottom: 0; }
+
+.bucket img {
+  height: 200px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 200px;
+}
+/*===================================================*/
 
 
 
