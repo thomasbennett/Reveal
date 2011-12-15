@@ -48,7 +48,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
 
-input, select { border: 1px solid #999; vertical-align: middle; }
+input, select, textarea { border: 1px solid #999; vertical-align: middle; }
 
 
 /**
@@ -130,7 +130,7 @@ a:link { -webkit-tap-highlight-color: #FF5E99; }
 
 /* Make buttons play nice in IE:
    www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
-button {  width: auto; overflow: visible; }
+button {  background: #7a3014; border-radius: 5px; text-transform: uppercase; padding: 4px 25px; color: #fff; border: 1px solid #21231d; width: auto; overflow: visible; margin-bottom: 15px;}
 
 /* Bicubic resizing for non-native sized IMG:
    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
@@ -144,24 +144,35 @@ button {  width: auto; overflow: visible; }
 /* Global */
 body { background: #ccc url('images/background.png') repeat; }
 body, select, input, textarea {
-  color: #444;
+  color: #222;
 }
 
 label, input, textarea { float: left; }
 .formset { clear: both; display: block; }
 .formset label { width: 300px; }
 .radio-buttons label { width: auto } 
-textarea { margin-bottom: 10px; }
+textarea { margin-bottom: 10px; width: 167px; }
+
+input, textarea { padding: 3px; }
 
 /* Headers  */
 h1, h2, h3, h4, h5, h6 { font-weight: normal; }
-h1, .h1, h2, .h2 { font-family: 'Zapfino'; }
-h3, .h3 { font-family: 'Trebuchet MS'; }
+h1, .h1, h2, .h2 { color: #000; font-family: 'Zapfino'; }
+h2, .h2 { font-size: 20px; }
+h3, .h3 { font-family: 'Trebuchet MS', 'Lucida Sans Unicode', sans-serif; font-size: 16px; margin-bottom: 5px; }
 
 a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
 
-p { margin-bottom: 20px; }
+p { line-height: 1.4; padding-bottom: 20px; }
+
+blockquote { 
+  font-size: 18px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', sans-serif;
+}
+
+blockquote p { background: #7d7d7d; color: #fff; padding: 15px 10px 10px; margin: 0 0 10px 10px; width: 575px; }
+blockquote p:first-letter { font-size: 20px; font-family: 'Zapfino'; } 
 
 /**
  * Primary styles
@@ -171,12 +182,15 @@ p { margin-bottom: 20px; }
 
 /* Tools */
 .alignleft { float: left; margin-right: 15px; }
+img.alignleft { border: 2px solid #ccc; margin-bottom: 15px; }
 .alignright { float: right; margin-left: 15px; }
+img.alignright { border: 2px solid #ccc; margin-bottom: 15px; }
 .left { float: left; }
 .right { float: right; }
 .clear { clear: both; }
 .inline li { display: inline-block; float: left; }
-.center { margin: 0 auto; width: 960px; }
+.center { margin: 0 auto; width: 892px; }
+.centered { text-align: center; }
 .clear { clear: both; }
 .clearnone { clear: none; }
 .full-width { width: 100%; }
@@ -250,7 +264,7 @@ header {
 #container {
   background: url('images/container-bg.png') repeat-y;
   margin: 0 auto;
-  padding: 20px 44px;
+  padding: 20px 44px 0;
   width: 892px;
 }
 
@@ -265,7 +279,25 @@ footer {
 /* Gallery */
 .ngg-thumbnail { display: none; }
 .ngg-albumcontent { display: none; }
+.ngg-description { display: none; }
 #TB_closeWindow { display: none; }
+.ngg-navigation { display: none; }
+
+.ngg-albumtitle a { color: #666; font-size: 12px; font-style: italic; text-decoration: none; }
+.ngg-gallery-thumbnail-box { float: left; margin-right: 5px; }
+
+#gallery-image-container { float: right; height: 425px; overflow: hidden; margin-right: 5px; position: relative; width: 590px; }
+#gallery-image { position: relative; width: 590px; }
+#gallery-thumbs { clear: both; float: left; margin-bottom: 2px; padding-left: 5px; }
+#gallery-thumbs p { display: none; }
+.gallery-page { float: left; width: 293px;j}
+
+.tb-img-count { background: #d3d3d3; bottom: 0; color: #000; font-size: 14px; height: 20px; opacity: .8; padding: 5px; position: absolute; right: 0; text-align: center; width: 100%; }
+#TB_next { background: url('images/next.png') no-repeat; right: 0; width: 31px; }
+#TB_prev { background: url('images/prev.png') no-repeat; left: 0; width: 28px; }
+#TB_prev, #TB_next { height: 54px; position: absolute; text-indent: -9999px; top: 165px; }
+#TB_Image { max-width: 590px; }
+#TB_next:hover, #TB_prev:hover { cursor: pointer; }
 /*===================================================*/
 
 /* Home */
@@ -279,15 +311,55 @@ footer {
 .bucket p { margin-bottom: 0; }
 
 .bucket img {
-  height: 200px;
   left: 0;
   position: absolute;
   top: 0;
-  width: 200px;
 }
 /*===================================================*/
 
+/* About */
+/*===================================================*/
 
+/* Praise */
+.attachment-praise-thumb { 
+  border: 4px solid #ccc; 
+  float: left; 
+  margin-right: 15px; 
+}
+#praise-container { margin-top: 30px; }
+.praise-featured { 
+  background: url('images/quote.png') no-repeat; 
+  border-bottom: 1px solid #e6e6e6;
+  padding: 15px 15px 10px 20px;
+  margin-bottom: 25px;
+  margin-top: 15px;
+}
+.praise-featured h3 { font-size: 20px; margin-bottom: 15px; }
+.praise-featured p { font-size: 16px; line-height: 1.8; }
+
+.praise-entry { 
+  background: #f8f8f8;
+  border-radius: 10px; 
+  border-bottom: 1px solid #bbb;
+  border-right: 1px solid #ccc;
+  margin-top: 15px;
+  padding: 30px 30px 10px;
+}
+.praise-entry p {
+  background: url('images/quote.png') no-repeat; 
+  margin-left: -25px;
+  padding-left: 25px;
+  margin-top: -35px;
+  padding-top: 35px;
+}
+
+
+.praise-featured h3, .praise-entry h3 { color: #7f3215; }
+
+/*===================================================*/
+
+/* Contact */
+#chat-block-site { display: none; }
 
 
 
@@ -359,7 +431,7 @@ footer {
 @media print {
   * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important;
   -ms-filter: none !important; } /* Black prints faster: sanbeiji.com/archives/953 */
-  a, a:visited { color: #444 !important; text-decoration: underline; }
+  a, a:visited { color: #222 !important; text-decoration: underline; }
   a[href]:after { content: " (" attr(href) ")"; }
   abbr[title]:after { content: " (" attr(title) ")"; }
   .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */

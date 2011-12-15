@@ -4,7 +4,7 @@
 */
 ob_start();
 ?>
-
+<style>#content { padding-bottom: 30px; }</style>
 <div id="praise-container">
 <?php
 query_posts(array(
@@ -17,10 +17,12 @@ if(have_posts()):
   while(have_posts()):
     the_post();
     ?>
+    <h2 class="centered">Priase for Reveal</h2>
     <article class="praise-featured">
-      <?php the_post_thumbnail(); ?>
-      <?php the_title(); ?>
+      <h3><?php the_title(); ?></h3>
+      <?php the_post_thumbnail('praise-thumb'); ?>
       <?php the_content(); ?>
+      <div class="clear"></div>
     </article>
   <?php
   endwhile;
@@ -32,9 +34,10 @@ if(have_posts()):
   while(have_posts()):
     the_post();
     ?>
-    <article class="praise">
-      <?php the_title(); ?>
+    <article class="praise-entry">
+      <h3><?php the_title(); ?></h3>
       <?php the_content(); ?>
+      <div class="clear"></div>
     </article>
   <?php 
   endwhile;

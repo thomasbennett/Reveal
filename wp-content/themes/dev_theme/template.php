@@ -14,6 +14,17 @@
   <meta name="author" content="Thomas Bennett for TB" />
 
   <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory') ?>/style.css" />
+  <?php if(is_page('Gallery') || is_home()): ?>
+    <style> 
+      header { margin-bottom: 30px; } 
+      #content { background: url(<?php bloginfo('template_directory') ?>/images/inner-bg.png) no-repeat bottom left; }  
+    </style>
+  <?php else : ?>
+  <style>
+    #content { background: url(<?php bloginfo('template_directory') ?>/images/inner-bg.png) no-repeat bottom left; padding: 0 50px; }  
+    header { margin-bottom: 30px; } 
+  </style>
+  <?php endif; ?>
 
   <?php if(is_singular()) wp_enqueue_script('comment-reply'); ?>
   <?php wp_enqueue_script('jquery'); ?>

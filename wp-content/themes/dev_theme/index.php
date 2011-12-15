@@ -38,7 +38,7 @@ if($callouts->have_posts()):
     $callouts->the_post(); 
     ?>
     <div class="bucket">
-      <?php the_post_thumbnail(); ?>
+      <?php the_post_thumbnail('buckets'); ?>
       <h2 class="h3"><?php the_title(); ?></h2>
       <span><?php the_content(); ?></span>
     </div>

@@ -7,6 +7,11 @@
 // Add featured image to posts
 add_theme_support('post-thumbnails');
 
+// set thumbnail size (praise page)
+add_image_size( 'praise-thumb', 240, 140, true );
+//buckets
+add_image_size( 'buckets', 240, 140, true );
+
 // Defines the Excerpt
 function new_excerpt_length($length) {
 	return 100;

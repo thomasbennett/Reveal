@@ -48,6 +48,7 @@ jQuery(function($){
   });
 
   $('.ngg-description').find('p').next().hide();
+  $('.ngg-albumoverview').next().remove();
 });
 
 function setFirstImage()
@@ -64,7 +65,7 @@ function tb_remove_info()
   jQuery('#TB_ImageOff, #TB_caption, #TB_closeWindow').remove();
 }
 </script>
-
+<div class="clear"></div>
 <?php
 endif; 
 

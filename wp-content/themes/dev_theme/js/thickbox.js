@@ -109,7 +109,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 
         TB_WIDTH = imageWidth + 30;
         TB_HEIGHT = imageHeight + 60;
-        jQuery("#gallery-image").append("<a href='' id='TB_ImageOff' title='"+thickboxL10n.close+"'><img id='TB_Image' src='"+url+"' width='"+imageWidth+"' height='"+imageHeight+"' alt='"+caption+"'/></a>" + "<div id='TB_caption'>"+caption+"<div id='TB_secondLine'>" + TB_imageCount + TB_PrevHTML + TB_NextHTML + "</div></div><div id='TB_closeWindow'><a href='#' id='TB_closeWindowButton' title='"+thickboxL10n.close+"'><img src='" + tb_closeImage + "' /></a></div>");
+        jQuery("#gallery-image").append("<img id='TB_Image' src='"+url+"' alt='"+caption+"'/>" + "<div id='TB_caption'><div id='TB_secondLine'><span class='tb-img-count'>" + TB_imageCount + "</span><span class='tb-prev'>" + TB_PrevHTML + "</span><span class='tb-next'>" + TB_NextHTML + "</span></div></div>");
 
         if (!(TB_PrevHTML === "")) {
           function goPrev(){
