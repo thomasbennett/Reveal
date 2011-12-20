@@ -29,7 +29,7 @@ endif;
 
 <section id="callouts">
 <?php
-$args = array('post_type'=>'callouts');
+$args = array('post_type'=>'callouts', 'orderby'=>'post_date', 'order'=>'ASC');
 $callouts = new WP_Query($args);
 
 // start callout loop
@@ -38,9 +38,13 @@ if($callouts->have_posts()):
     $callouts->the_post(); 
     ?>
     <div class="bucket">
+      <a href="<?php echo get_the_excerpt(); ?>" class="excerpt-link">
       <?php the_post_thumbnail('buckets'); ?>
-      <h2 class="h3"><?php the_title(); ?></h2>
-      <span><?php the_content(); ?></span>
+      <div class="bucket-content">
+        <h2 class="h3"><?php the_title(); ?></h2>
+        <span><?php the_content(); ?></span>
+      </div>
+      </a>
     </div>
   <?php 
   endwhile; 
@@ -55,6 +59,9 @@ endif;
       timeout: 4500,
       speed: 500
     });
+
+    $('.bucket:nth-child(3)').css({'margin-right':'0'});
+    var link = $('#excerpt-length').attr('href');
   });
 </script>
 

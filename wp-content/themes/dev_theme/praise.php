@@ -17,7 +17,7 @@ if(have_posts()):
   while(have_posts()):
     the_post();
     ?>
-    <h2 class="centered">Priase for Reveal</h2>
+    <h2>Priase</h2>
     <article class="praise-featured">
       <h3><?php the_title(); ?></h3>
       <?php the_post_thumbnail('praise-thumb'); ?>

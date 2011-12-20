@@ -69,6 +69,14 @@ function tb_remove_info()
 <?php
 endif; 
 
+if(is_page('Contact')): ?>
+  <script>
+  jQuery(function($){
+    $('#chat-send-wrap').find('.chat-note').html('Press your ENTER/RETURN key to send a message!');
+  });
+  </script>
+<?php endif;
+
 $content = ob_get_clean();
 require('template.php');
 ?>

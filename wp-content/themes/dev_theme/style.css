@@ -73,8 +73,9 @@ html { overflow-y: scroll; }
 /* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active { outline: none; }
 
-ul, ol { margin-left: 2em; }
+ul, ol { margin-left: 2em; margin-bottom: 25px; }
 ol { list-style-type: decimal; }
+li { list-style-image: url('images/bird.png'); margin-bottom: 3px; }
 
 /* Remove margins for navigation lists */
 nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
@@ -157,14 +158,14 @@ input, textarea { padding: 3px; }
 
 /* Headers  */
 h1, h2, h3, h4, h5, h6 { font-weight: normal; }
-h1, .h1, h2, .h2 { color: #000; font-family: 'Zapfino'; }
-h2, .h2 { font-size: 20px; }
+h1, .h1, h2, .h2 { color: #000; font-family: 'Zapfino'; padding-bottom: 10px; }
+h2, .h2 { font-size: 28px; }
 h3, .h3 { font-family: 'Trebuchet MS', 'Lucida Sans Unicode', sans-serif; font-size: 16px; margin-bottom: 5px; }
 
 a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
 
-p { line-height: 1.4; padding-bottom: 20px; }
+p { line-height: 1.6; padding-bottom: 20px; }
 
 blockquote { 
   font-size: 18px;
@@ -194,6 +195,7 @@ img.alignright { border: 2px solid #ccc; margin-bottom: 15px; }
 .clear { clear: both; }
 .clearnone { clear: none; }
 .full-width { width: 100%; }
+.half-width { float: left; width: 50%; }
 .divider { border-bottom: 1px solid #ddd; clear: both; margin: 20px auto; padding-top: 20px; width: 80%; }
 
 /*===================================================*/
@@ -215,7 +217,7 @@ nav a {
   text-indent: -9999px;
 }
 
-nav a:hover { 
+nav a:hover, nav a:active { 
   background-position: bottom left;
   height: 17px;
 }
@@ -270,8 +272,10 @@ header {
 
 footer {
   background: url('images/container-bottom.png') no-repeat center top;
+  color: #000;
+  font-weight: bold;
   margin: 0 auto;
-  padding: 50px 44px;
+  padding: 30px 44px;
   width: 892px;
 }
 /*===================================================*/
@@ -283,7 +287,7 @@ footer {
 #TB_closeWindow { display: none; }
 .ngg-navigation { display: none; }
 
-.ngg-albumtitle a { color: #666; font-size: 12px; font-style: italic; text-decoration: none; }
+.ngg-albumtitle a { color: #666; font-size: 11px; font-style: italic; text-decoration: none; }
 .ngg-gallery-thumbnail-box { float: left; margin-right: 5px; }
 
 #gallery-image-container { float: right; height: 425px; overflow: hidden; margin-right: 5px; position: relative; width: 590px; }
@@ -300,21 +304,25 @@ footer {
 #TB_next:hover, #TB_prev:hover { cursor: pointer; }
 /*===================================================*/
 
+/* Services */
+.services-list { clear: right; float: right; width: 400px; padding-left: 15px; }
+.services-list h2 { margin-top: 20px; }
+.services-list ul { margin-bottom: 0; }
+.services-list-col { width: 168px; float: left; }
+.services-list-col li { margin-bottom: 5px; }
+/*===================================================*/
+
 /* Home */
-.slide { 
-  height: 500px;
-  overflow: hidden;
-  width: 890px;
-}
+#slideshow { margin-bottom: 12px; }
+.slide { height: 500px; overflow: hidden; width: 890px; }
 
-.bucket { position: relative; }
+.bucket { float: left; height: 186px; margin-right: 22px; position: relative; width: 282px; z-index: 0;}
+.bucket a { text-decoration: none; }
+.bucket-content { position: absolute; bottom: 0; }
 .bucket p { margin-bottom: 0; }
-
-.bucket img {
-  left: 0;
-  position: absolute;
-  top: 0;
-}
+.bucket img { left: 0; position: absolute; top: 0; }
+.bucket h2, .bucket p { background: #000; opacity: .8; margin-bottom: 0;padding:8px; position: relative; z-index: 2; color: #fff; }
+.bucket h2 { padding-bottom: 0; }
 /*===================================================*/
 
 /* About */
@@ -359,7 +367,14 @@ footer {
 /*===================================================*/
 
 /* Contact */
+#contact-page ul { padding-bottom: 15px; margin-left: 0; margin-bottom: 0; }
+#contact-page li { list-style-image: none; list-style-type: none;}
 #chat-block-site { display: none; }
+.chat-box { width: 500px; float: right; background: transparent !important; }
+.chat-area { height: 200px !important; }
+.chat-tool-bar .chat-archive, .chat-tool-bar .chat-clear { background: #7a3014; border-radius: 5px; text-transform: uppercase; padding: 4px 15px; color: #fff; border: 1px solid #21231d; width: auto; overflow: visible; margin: 15px 15px 15px 0 !important; }
+#chat-wrap-15 span.date { color: #000 !important; }
+/*===================================================*/
 
 
 

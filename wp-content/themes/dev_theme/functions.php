@@ -10,7 +10,7 @@ add_theme_support('post-thumbnails');
 // set thumbnail size (praise page)
 add_image_size( 'praise-thumb', 240, 140, true );
 //buckets
-add_image_size( 'buckets', 240, 140, true );
+add_image_size( 'buckets', 282, 186, true );
 
 // Defines the Excerpt
 function new_excerpt_length($length) {
@@ -396,7 +396,7 @@ function post_type_callouts()
     'capability_type' => 'post',
     'hierarchical' => true,
     'menu_position' => null,
-    'supports' => array('title', 'editor', 'thumbnail')
+    'supports' => array('title', 'editor', 'thumbnail', 'excerpt')
   );
 
   register_post_type('callouts',$args);

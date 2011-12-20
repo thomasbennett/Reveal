@@ -25,6 +25,18 @@
     header { margin-bottom: 30px; } 
   </style>
   <?php endif; ?>
+  <?php if(is_page('Services')): ?>
+  <style>
+    #content { padding: 0 10px !important; margin-top: 50px; }
+    h2 { float: left; margin-top: 10px;  }
+  </style>
+  <?php endif; ?>
+  <?php if(is_page('About')): ?>
+  <style>
+    #content { margin-top: 50px; }
+    h2 { float: left; margin-top: 10px;  }
+  </style>
+  <?php endif; ?>
 
   <?php if(is_singular()) wp_enqueue_script('comment-reply'); ?>
   <?php wp_enqueue_script('jquery'); ?>
