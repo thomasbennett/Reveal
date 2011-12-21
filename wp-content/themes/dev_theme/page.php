@@ -33,6 +33,7 @@ jQuery(function($){
   $('.ngg-albumtitle').find('a').click(function(){
     $('.ngg-albumtitle').find('a').removeClass('active-gallery');
     $(this).addClass('active-gallery');
+    $('#gallery-image').html();
 
     tb_remove_info();
 
@@ -62,7 +63,7 @@ function setFirstImage()
 
 function tb_remove_info()
 {
-  jQuery('#TB_ImageOff, #TB_caption, #TB_closeWindow').remove();
+  jQuery('#TB_Image, #TB_ImageOff, #TB_caption, #TB_closeWindow').remove();
 }
 </script>
 <div class="clear"></div>

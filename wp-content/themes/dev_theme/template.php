@@ -71,7 +71,7 @@
   <div class="clear"></div>
 
   <footer>
-    <p>&copy; Copyright <?php echo date('Y'); ?> Reveal Event Design</p>
+    <p>&copy; Copyright <?php echo date('Y'); ?> Reveal Event Style</p>
     <?php get_footer() ?>
   </footer>
 

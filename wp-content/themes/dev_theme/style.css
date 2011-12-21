@@ -300,7 +300,7 @@ footer {
 #TB_next { background: url('images/next.png') no-repeat; right: 0; width: 31px; }
 #TB_prev { background: url('images/prev.png') no-repeat; left: 0; width: 28px; }
 #TB_prev, #TB_next { height: 54px; position: absolute; text-indent: -9999px; top: 165px; }
-#TB_Image { max-width: 590px; }
+#TB_Image { max-width: 590px; max-height: 420px; }
 #TB_next:hover, #TB_prev:hover { cursor: pointer; }
 /*===================================================*/
 
